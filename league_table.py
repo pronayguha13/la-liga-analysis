@@ -37,7 +37,7 @@ def get_team_wise_stat(season_data, season):
     team_stat_df.sort_values(by="Position", inplace=True)
     team_stat_df["Position"] = team_stat_df["Position"].astype("int8")
     team_stat_df.set_index("Position", inplace=True)
-    file_path = "league-table" + "-" + str(season) + ".csv"
+    file_path = "league-tables/" + str(season) + ".csv"
 
     if os.path.exists(file_path):
         team_stat_df.to_csv(file_path)
