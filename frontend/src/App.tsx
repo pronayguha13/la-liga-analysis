@@ -1,5 +1,7 @@
+import LeagueTable from "@/features/League-Table";
+
 const App = () => {
-  return <div>This is a main</div>;
+  return <LeagueTable />;
 };
 
 export default App;
