@@ -21,7 +21,7 @@ const TableView = ({ columns, data, title = "" }: TableViewProps) => {
       if (!data.length) return <TableRow></TableRow>;
       return data.map((row) => {
         return (
-          <TableRow>
+          <TableRow className="h-8">
             {Object.entries(row).map((cell, index) => (
               <TableCell key={index}>{cell[1]}</TableCell>
             ))}
@@ -30,7 +30,7 @@ const TableView = ({ columns, data, title = "" }: TableViewProps) => {
       });
     } else {
       return (
-        <TableRow>
+        <TableRow className="h-8">
           {Object.entries(data).map((cell, index) => (
             <TableCell key={index}>{cell[1]}</TableCell>
           ))}
@@ -42,12 +42,8 @@ const TableView = ({ columns, data, title = "" }: TableViewProps) => {
     <Table>
       <TableHeader>
         <TableRow>
-          {/* <TableHead className="w-[12ch]">Invoice</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>Method</TableHead>
-          <TableHead className="text-right">Amount</TableHead> */}
           {columns.map((column, index) => (
-            <TableHead key={index}>{column.toLocaleUpperCase()}</TableHead>
+            <TableHead key={index} align="center">{column.toLocaleUpperCase()}</TableHead>
           ))}
         </TableRow>
       </TableHeader>

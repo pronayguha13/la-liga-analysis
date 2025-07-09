@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Fragment } from "react/jsx-runtime";
 
 import Header from "@/features/League-Table/components/Header";
-import TableView from "@/features/League-Table/components/TableView";
+import TableView from "@/components/TableView";
 import { fetchLegueTable } from "@/features/League-Table/services";
 
 const LeagueTable = () => {

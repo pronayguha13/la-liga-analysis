@@ -19,7 +19,7 @@ const Header = ({ selectedSeason, onSelectSeason }: LeagueTableHeaderProps) => {
     <div className={style.container}>
       <div className={style.season_selection}>
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
+          <DropdownMenuTrigger asChild className="w-full">
             <Button variant="outline" className="flex items-center gap-2">
               {selectedSeason
                 ? `Selected Season: ${selectedSeason}`
@@ -27,9 +27,13 @@ const Header = ({ selectedSeason, onSelectSeason }: LeagueTableHeaderProps) => {
               <ChevronDown className="w-4 h-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
+          <DropdownMenuContent align="center" className="w-screen">
             {dropdownMenuItems.map((item) => (
-              <DropdownMenuItem key={item} onClick={() => onSelectSeason(item)}>
+              <DropdownMenuItem
+                key={item}
+                onClick={() => onSelectSeason(item)}
+                className="font-semibold p-4"
+              >
                 {item}
               </DropdownMenuItem>
             ))}
