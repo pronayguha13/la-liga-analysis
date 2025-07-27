@@ -1,0 +1,1 @@
+export type ITableRow = { [key: string]: string | number };

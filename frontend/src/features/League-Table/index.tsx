@@ -5,9 +5,14 @@ import Header from "@/features/League-Table/components/Header";
 import TableView from "@/components/TableView";
 import { fetchLegueTable } from "@/features/League-Table/services";
 
+/*-------Type Import-------*/
+import { type LeagueTable } from "@/features/League-Table/types";
+import type { ITableRow } from "@/types";
+/*-------Type Import-------*/
+
 const LeagueTable = () => {
   const [selectedSeason, setSelectedSeason] = useState<number>(2025);
-  const [selectedSeasonTableData, setSelectedSeasonTableData] = useState<any>(
+  const [selectedSeasonTableData, setSelectedSeasonTableData] = useState<LeagueTable>(
     []
   );
 
@@ -43,7 +48,7 @@ const LeagueTable = () => {
       <Header selectedSeason={selectedSeason} onSelectSeason={onSelectSeason} />
       <TableView
         title={`League Table for season ${selectedSeason}`}
-        data={selectedSeasonTableData}
+        data={selectedSeasonTableData as unknown as ITableRow[]}
         columns={columns}
       />
     </Fragment>

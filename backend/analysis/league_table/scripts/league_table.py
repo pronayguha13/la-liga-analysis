@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+from pathlib import Path
 
 
 def get_team_stat(team_data, team, complete_df):
@@ -14,12 +15,6 @@ def get_team_stat(team_data, team, complete_df):
         columns=complete_df.columns,
     )
     complete_df = pd.concat([complete_df, team_df], ignore_index=True)
-
-    # file_path = team + ".csv"
-    # if os.path.exists(file_path):
-    #     team_df.to_csv(file_path, index=False)
-    # else:
-    #     team_df.to_csv(file_path, mode="a", header=False, index=False)
     return complete_df
 
 
@@ -37,12 +32,12 @@ def get_team_wise_stat(season_data, season):
     team_stat_df.sort_values(by="Position", inplace=True)
     team_stat_df["Position"] = team_stat_df["Position"].astype("int8")
     team_stat_df.set_index("Position", inplace=True)
-    file_path = "league-tables/" + str(season) + ".csv"
+    file_path = Path(__file__).resolve().parents[1] / f"output/{str(season)}.csv"
 
     if os.path.exists(file_path):
-        team_stat_df.to_csv(file_path)
+        team_stat_df.to_csv(file_path, mode="a", header=False, index=False)
     else:
-        team_stat_df.to_csv(file_path, mode="a")
+        team_stat_df.to_csv(file_path, mode="w", header=True, index=False)
 
 
 def prepare_league_table(df, season):

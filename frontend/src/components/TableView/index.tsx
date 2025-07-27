@@ -7,10 +7,12 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-type TableRow = { [key: string]: string | number };
+/*-------Type Import-------*/
+import { type ITableRow } from "@/types";
+/*-------Type Import-------*/
 
 type TableViewProps = {
-  data: TableRow | TableRow[];
+  data: ITableRow | ITableRow[];
   title?: string;
   columns: string[];
 };

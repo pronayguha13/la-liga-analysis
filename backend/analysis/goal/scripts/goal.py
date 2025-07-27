@@ -1,9 +1,12 @@
 import pandas as pd
 import os
+from pathlib import Path
 
 
 def get_goals_per_season(season, df):
-    file_path = "../../league-tables/" + str(season) + ".csv"
+    file_path = (
+        Path(__file__).resolve().parents[2] / f"league_table/output/{str(season)}.csv"
+    )
     if os.path.exists(file_path):
         season_league_table = pd.read_csv(file_path)
         highest_goal = season_league_table["gf"].max()
@@ -47,18 +50,20 @@ def get_season_analysis(df):
     )
     seasons = df["season"].unique()
     # get total goal scored for each recorded season
-    output_path = "../../output/goals.csv"
+    output_path = Path(__file__).resolve().parents[1] / f"output/goals.csv"
     season_group = df.groupby("season")
     for season in seasons:
         temp_df = get_goals_per_season(season, goal_df)
         goal_df = pd.concat([goal_df, temp_df], ignore_index=True)
     goal_df.set_index("Season", inplace=True)
     if os.path.exists(output_path):
-        goal_df.to_csv(output_path)
+        goal_df.to_csv(output_path, "a", header=False, index=False)
     else:
-        goal_df.to_csv(output_path, "a")
+        goal_df.to_csv(output_path, header=True, index=True)
 
 
 # load the dataset
-df = pd.read_csv("../../la-liga-analysis.csv", parse_dates=["date"], index_col=[0])
+df = pd.read_csv(
+    "../../../data/la-liga-analysis.csv", parse_dates=["date"], index_col=[0]
+)
 get_season_analysis(df)

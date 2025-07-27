@@ -1,10 +1,9 @@
 import pandas as pd
-import numpy as np
 
-from league_table import prepare_league_table
+from league_table.scripts.league_table import prepare_league_table
 
 
-df = pd.read_csv("matches_full.csv", parse_dates=["date"], index_col=[0])
+df = pd.read_csv("./data/matches_full.csv", parse_dates=["date"], index_col=[0])
 
 # clear unnecessary columns
 df.drop(columns=["comp", "match report", "notes"], inplace=True)
@@ -37,6 +36,3 @@ seasons = df["season"].unique()
 
 for season in seasons:
     prepare_league_table(df=df, season=season)
-
-
-# df.to_csv("la-liga-analysis.csv")
