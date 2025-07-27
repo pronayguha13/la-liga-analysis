@@ -6,7 +6,7 @@ import TableView from "@/components/TableView";
 import { fetchLegueTable } from "@/features/League-Table/services";
 
 const LeagueTable = () => {
-  const [selectedSeason, setSelectedSeason] = useState<number | null>(null);
+  const [selectedSeason, setSelectedSeason] = useState<number>(2025);
   const [selectedSeasonTableData, setSelectedSeasonTableData] = useState<any>(
     []
   );
@@ -18,12 +18,10 @@ const LeagueTable = () => {
 
   useEffect(() => {
     const getLeagueTable = async () => {
-      if (selectedSeason) {
-        const response = await fetchLegueTable(selectedSeason);
-        console.log("🚀 ~ useEffect ~ response:", response);
-        setSelectedSeasonTableData(response);
-      }
-    };
+      const response = await fetchLegueTable(selectedSeason);
+      console.log("🚀 ~ useEffect ~ response:", response);
+      setSelectedSeasonTableData(response);
+    }
 
     getLeagueTable();
   }, [selectedSeason]);
